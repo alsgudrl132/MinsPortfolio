@@ -255,6 +255,7 @@ body.light-theme .projects-section {
   grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
   gap: 30px;
 }
+
 .skill-category {
   background-color: var(--card-bg-dark);
   padding: 40px;
@@ -262,14 +263,17 @@ body.light-theme .projects-section {
   transition: background-color 0.3s ease, transform 0.3s ease;
   min-height: 250px;
 }
+
 .skill-category h3 {
   font-size: 1.5rem;
   margin-bottom: 2rem;
   color: var(--primary-color);
 }
+
 .skill-category:hover {
   transform: translateY(-8px);
 }
+
 .skill-icons {
   display: flex;
   flex-wrap: wrap;
@@ -278,12 +282,14 @@ body.light-theme .projects-section {
   justify-content: center;
   align-items: center;
 }
+
 .skill-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
+
 .skill-icons img {
   width: 100px;
   height: 100px;
@@ -293,9 +299,11 @@ body.light-theme .projects-section {
   border-radius: 12px;
   transition: transform 0.3s ease;
 }
+
 .skill-icons img:hover {
   transform: translateY(-5px);
 }
+
 .skill-icons .skill-label {
   font-size: 0.9rem;
   color: var(--text-color);
@@ -357,7 +365,6 @@ body.light-theme .projects-section {
   font-size: 0.8rem;
 }
 
-/* 모달 스타일 */
 .modal {
   display: none;
   position: fixed;
@@ -445,7 +452,7 @@ body.light-theme .projects-section {
   margin-bottom: 3rem;
 }
 
-.task-container h6 {
+.task-container h4 {
   font-size: 1.4rem;
   margin-bottom: 1.5rem;
   color: var(--primary-color);
@@ -508,46 +515,71 @@ hr {
   transform: scale(1.02);
 }
 
-.footer {
-  padding: 2rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+/* Demo Access Styles */
+.demo-access {
+  margin-top: 20px;
 }
 
-.footer-content {
+.demo-buttons {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
-.copyright {
-  font-size: 0.9rem;
-  color: #888;
+.btn-demo {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
-.social-links {
-  display: flex;
-  gap: 1.5rem;
+.btn-demo:hover {
+  background-color: #2980b9;
 }
 
-.social-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.btn-info {
+  background-color: transparent;
+  border: 1px solid var(--text-light);
   color: var(--text-light);
-  text-decoration: none;
-  transition: color 0.3s ease;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.social-link:hover {
+.btn-info:hover {
+  background-color: var(--text-light);
+  color: var(--background-dark);
+}
+
+.credentials-box {
+  background-color: rgba(52, 152, 219, 0.1);
+  border: 1px solid rgba(52, 152, 219, 0.2);
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.credentials-box p {
+  margin: 10px 0;
+  color: var(--text-light);
+}
+
+.credentials-box strong {
   color: var(--primary-color);
+  display: block;
+  margin-bottom: 15px;
+  font-size: 1.1em;
 }
 
-.social-link svg {
-  width: 20px;
-  height: 20px;
+/* Light theme styles */
+body.light-theme .credentials-box p {
+  color: var(--text-dark);
 }
 
-/* 라이트 테마 추가 스타일 */
 body.light-theme .info-column {
   background: var(--card-bg-light);
 }
@@ -601,7 +633,7 @@ body.light-theme .modal-section {
 body.light-theme .modal-title,
 body.light-theme .modal-section h3,
 body.light-theme .modal-section h4,
-body.light-theme .task-container h6 {
+body.light-theme .task-container h4 {
   color: var(--text-dark);
 }
 
@@ -648,6 +680,59 @@ body.light-theme .social-link {
 
 body.light-theme .social-link:hover {
   color: var(--primary-color);
+}
+
+body.light-theme .btn-info {
+  border: 1px solid var(--text-dark);
+  color: var(--text-dark);
+}
+
+body.light-theme .btn-info:hover {
+  background-color: var(--text-dark);
+  color: var(--background-light);
+}
+
+body.light-theme .credentials-box {
+  background-color: rgba(52, 152, 219, 0.05);
+}
+
+.footer {
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: var(--primary-color);
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* 반응형 디자인 */
@@ -697,5 +782,20 @@ body.light-theme .social-link:hover {
   .task-flex-container {
     flex-direction: column;
     gap: 2rem;
+  }
+
+  .demo-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-demo,
+  .btn-info {
+    width: 100%;
+    text-align: center;
+  }
+
+  .task-img-container {
+    width: 100%;
   }
 }

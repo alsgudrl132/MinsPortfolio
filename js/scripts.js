@@ -49,10 +49,35 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="project-title">
                             <img src="img/${projectId}300.png" class="modal-image">
                             <div class="project-title-content">
-                                <h2 class="modal-title">${data.title}</h2>
-                                <p>${data.subtitle}</p>
-                                <p>${data.description}</p>
-                            </div>
+                              <h2 class="modal-title">${data.title}</h2>
+                              <p>${data.subtitle}</p>
+                              ${
+                                Array.isArray(data.description)
+                                  ? data.description
+                                      .map((desc) => `<p>${desc}</p>`)
+                                      .join("")
+                                  : `<p>${data.description}</p>`
+                              }
+                              ${
+                                data.demo_url
+                                  ? `
+                                  <div class="demo-access">
+                                      <div class="demo-buttons">
+                                          <a href="${data.demo_url}" target="_blank" class="btn btn-demo">체험하기</a>
+                                          <button class="btn btn-info" onclick="toggleCredentials(event)">접속 정보 보기</button>
+                                      </div>
+                                      <div class="demo-credentials" style="display: none;">
+                                          <div class="credentials-box">
+                                              <strong>테스트 계정으로 빠른 접속:</strong>
+                                              <p>이메일: ${data.demo_credentials.email}</p>
+                                              <p>비밀번호: ${data.demo_credentials.password}</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              `
+                                  : ""
+                              }
+                          </div>
                         </div>
                         <hr>
                         <div class="modal-section">
@@ -121,14 +146,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.openModal = openModal;
   window.closeModal = closeModal;
+
+  function toggleCredentials(event) {
+    event.stopPropagation();
+
+    const demoAccess = event.target.closest(".demo-access");
+    const credentials = demoAccess.querySelector(".demo-credentials");
+
+    if (credentials.style.display === "none") {
+      credentials.style.display = "block";
+    } else {
+      credentials.style.display = "none";
+    }
+  }
+
+  window.toggleCredentials = toggleCredentials;
 });
 
 const projectData = {
   efthelper: {
     title: "EFT HELPER 소개",
     subtitle: "Escape From Tarkov 도우미 서비스",
-    description:
-      "Escape From Tarkov Helper 이 프로젝트는 '이스케이프 프롬 타르코프 (Escape from Tarkov)' 게임 정보를 제공하는 웹 사이트입니다. 이 웹 사이트는 게임에 관한 탄약, 방탄, 헬멧, 마켓 정보 및 게임 맵 정보를 제공합니다.",
+    description: [
+      "Escape From Tarkov Helper 이 프로젝트는 '이스케이프 프롬 타르코프 (Escape from Tarkov)' 게임 정보를 제공하는 웹 사이트입니다.",
+      "이 웹 사이트는 게임에 관한 탄약, 방탄, 헬멧, 마켓 정보 및 게임 맵 정보를 제공합니다.",
+    ],
     period: "2023.10 - 2023.11",
     environment: [
       "Web Frontend(HTML5, CSS3, JS, REACT)",
@@ -194,8 +236,10 @@ const projectData = {
   blueocean: {
     title: "BLUEOCEAN 소개",
     subtitle: "주식정보 및 주식종목 추천 웹사이트",
-    description:
-      "딥러닝을 통한 주식종목 추천 사이트입니다. 이 웹사이트는 프로젝트이름인 블루오션에 맞게 일반 주식투자자들이 먼저 투자하기 좋도록 분석하여 예측하고 알려주는 방식을 목표로 만들었습니다.",
+    description: [
+      "딥러닝을 통한 주식종목 추천 사이트입니다.",
+      "이 웹사이트는 프로젝트이름인 블루오션에 맞게 일반 주식투자자들이 먼저 투자하기 좋도록 분석하여 예측하고 알려주는 방식을 목표로 만들었습니다.",
+    ],
     link: "https://drive.google.com/drive/folders/1SqSiXyLJsZjynxjxNv6VglFPq7ctKm3u",
     period: "2023.7 - 2023.9",
     environment: [
@@ -247,8 +291,10 @@ const projectData = {
   pilldex: {
     title: "PILLDEX 소개",
     subtitle: "약정보 찾기 및 근처 약국, 병원찾기 서비스",
-    description:
-      "약에대한 형태로 약의 정보를 찾을수있도록 도와드리는 사이트입니다. 이 웹사이트는 프로젝트이름인 PILLDEX(알약도감)에 맞게 약의 형태에대해 해당하는 약이 무엇이고 각종 약에대한 성분과 주의사항, 집주변 약국과 병원까지 찾아주는 기능을 합니다.",
+    description: [
+      "약에대한 형태로 약의 정보를 찾을수있도록 도와드리는 사이트입니다.",
+      "이 웹사이트는 프로젝트이름인 PILLDEX(알약도감)에 맞게 약의 형태에대해 해당하는 약이 무엇이고 각종 약에대한 성분과 주의사항, 집주변 약국과 병원까지 찾아주는 기능을 합니다.",
+    ],
     period: "2023.4 - 2023.6",
     environment: [
       "Web Frontend(HTML5, CSS3, JS, Jquery, Bootstrap)",
@@ -291,8 +337,15 @@ const projectData = {
   boardify: {
     title: "Boardify",
     subtitle: "협업 프로젝트 관리 도구",
-    description:
-      "Vue.js와 Supabase 기반의 현대적인 협업 프로젝트 관리 웹 애플리케이션이며 트렐로를 참고하여 만들어봤습니다.",
+    description: [
+      "Vue.js와 Supabase 기반의 현대적인 협업 프로젝트 관리 웹 애플리케이션이며 트렐로를 참고하여 만들어봤습니다",
+      "별도의 회원가입 없이 사용해보고 싶으시다면 아래의 접속 정보 보기를 사용하여 테스트 해보실 수 있습니다",
+    ],
+    demo_url: "http://boardify.ddns.net/login",
+    demo_credentials: {
+      email: "test@test.com",
+      password: "qwer1234!!",
+    },
     period: "2023.10 - 2023.11",
     environment: [
       "Web Frontend(Vue.js, Nuxt.js, Vuex)",
