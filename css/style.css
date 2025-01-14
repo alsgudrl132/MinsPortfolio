@@ -402,6 +402,8 @@ body.light-theme .projects-section {
 
 .modal-body {
   padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .modal-title {
@@ -453,9 +455,10 @@ body.light-theme .projects-section {
 }
 
 .task-container h4 {
-  font-size: 1.4rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
   color: var(--primary-color);
+  font-weight: 600;
 }
 
 .task-container span {
@@ -485,22 +488,21 @@ hr {
 
 .task-flex-container {
   display: flex;
-  gap: 3rem;
+  flex-direction: column;
+  gap: 2rem;
   margin: 2rem 0;
-  align-items: flex-start;
 }
 
 .task-img-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: stretch;
-  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .task-img {
   width: 100%;
-  height: 400px;
+  aspect-ratio: 16/9;
   object-fit: contain;
   border-radius: 12px;
   background: #2d2d2d;
@@ -509,6 +511,7 @@ hr {
   justify-content: center;
   align-items: center;
   transition: transform 0.3s ease;
+  max-height: 500px;
 }
 
 .task-img:hover {
